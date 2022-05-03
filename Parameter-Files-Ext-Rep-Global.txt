@@ -253,13 +253,13 @@ Username : streamnetwork
 Role : Administrator
 Type : Password
 Info :
-Password : RAbbithole1234#_
+Password : 
 
 Configuration Credentials:
 Credential Domain : OracleNetwork
 Credential Alias  : NETWORK
 UserID : streamnetwork
-Password : RAbbithole1234#_
+Password : 
 
 
 

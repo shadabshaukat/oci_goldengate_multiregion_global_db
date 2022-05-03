@@ -1,6 +1,6 @@
 -- Enable Goldengate user --
 
-alter user ggadmin identified by RAbbithole1234#_ ;
+alter user ggadmin identified by <> ;
 
 alter user ggadmin account unlock;
 
