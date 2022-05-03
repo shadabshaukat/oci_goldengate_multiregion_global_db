@@ -1,0 +1,5 @@
+*.nolog
+*.docx
+*.hcl
+*.tfstate
+*.terraform

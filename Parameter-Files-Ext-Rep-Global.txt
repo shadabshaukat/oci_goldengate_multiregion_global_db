@@ -1,0 +1,518 @@
+-- Sydney Capture Apply -- 
+
+
+EXTRACT EXTSYD
+USERIDALIAS ggsydney DOMAIN OracleGoldenGate
+EXTTRAIL BB
+TRANLOGOPTIONS EXCLUDETAG 70
+TABLE ADMIN.customers;
+TABLE ADMIN.inventory;
+TABLE ADMIN.stores;
+TABLE ADMIN.products;
+TABLE ADMIN.orders;
+TABLE ADMIN.shipments;
+TABLE ADMIN.order_items;
+
+REPLICAT REPSYD
+USERIDALIAS ggsydney DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 70
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPSYD2
+USERIDALIAS ggsydney DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 70
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPSYD3
+USERIDALIAS ggsydney DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 70
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+## DISTRIBUTION SERVICE SENDS TRAIL BB SYDNEY TO DD SINGAPORE, HH FRANKFURT, NN ASHBURN --
+## REPSYD TRAIL IS CC COMING FROM SINGAPORE, REPSYD2 TRAIL IS FF COMING FROM FRANKFURT, REPSYD3 TRAIL KK IS COMING FROM ASHBURN ##
+
+-- Singapore Capture Apply -- 
+
+EXTRACT EXTSGP
+USERIDALIAS ggsingapore DOMAIN OracleGoldenGate
+EXTTRAIL AA
+TRANLOGOPTIONS EXCLUDETAG 6b
+TABLE ADMIN.customers;
+TABLE ADMIN.inventory;
+TABLE ADMIN.stores;
+TABLE ADMIN.products;
+TABLE ADMIN.orders;
+TABLE ADMIN.shipments;
+TABLE ADMIN.order_items;
+
+
+
+REPLICAT REPSGP
+USERIDALIAS ggsingapore DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 6b
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPSGP2
+USERIDALIAS ggsingapore DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 6b
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPSGP3
+USERIDALIAS ggsingapore DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG 6b
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+## DISTRIBUTION SERVICE SENDS TRAIL AA SINGAPORE TO CC SYDNEY, II FRANKFURT, OO to ASHBURN --
+## REPSGP TRAIL IS DD COMING FROM SYDNEY, REPSGP2 TRAIL IS GG COMING FROM FRANKFURT, REPSGP3 TRAIL LL IS COMING FROM ASHBURN ##
+
+
+
+-- Frankfurt Capture Apply -- 
+
+EXTRACT EXTFRA
+USERIDALIAS ggfrankfurt DOMAIN OracleGoldenGate
+EXTTRAIL EE
+TRANLOGOPTIONS EXCLUDETAG f1
+TABLE ADMIN.customers;
+TABLE ADMIN.inventory;
+TABLE ADMIN.stores;
+TABLE ADMIN.products;
+TABLE ADMIN.orders;
+TABLE ADMIN.shipments;
+TABLE ADMIN.order_items;
+
+
+
+REPLICAT REPFRA
+USERIDALIAS ggfrankfurt DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG f1
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPFRA2
+USERIDALIAS ggfrankfurt DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG f1
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPFRA3
+USERIDALIAS ggfrankfurt DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG f1
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+
+## DISTRIBUTION SERVICE SENDS TRAIL EE FRANKFURT TO FF SYDNEY, GG SINGAPORE, PP TO ASHBURN  --
+## REPFRA TRAIL IS HH COMING FROM SYDNEY, REPFRA2 TRAIL IS II COMING FROM SINGAPORE, REPFRA3 TRAIL MM IS COMING FROM ASHBURN ##
+
+-- US Ashburn Capture Apply -- 
+
+EXTRACT EXTIAD
+USERIDALIAS ggashburn DOMAIN OracleGoldenGate
+EXTTRAIL JJ
+TRANLOGOPTIONS EXCLUDETAG df
+TABLE ADMIN.customers;
+TABLE ADMIN.inventory;
+TABLE ADMIN.stores;
+TABLE ADMIN.products;
+TABLE ADMIN.orders;
+TABLE ADMIN.shipments;
+TABLE ADMIN.order_items;
+TABLE ADMIN.customers_seq;
+
+REPLICAT REPIAD
+USERIDALIAS ggashburn DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG df
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+REPLICAT REPIAD2
+USERIDALIAS ggashburn DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG df
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+REPLICAT REPIAD3
+USERIDALIAS ggashburn DOMAIN OracleGoldenGate
+DBOPTIONS SETTAG df
+MAP ADMIN.customers, TARGET ADMIN.customers;
+MAP ADMIN.inventory, TARGET ADMIN.inventory;
+MAP ADMIN.stores, TARGET ADMIN.stores;
+MAP ADMIN.products, TARGET ADMIN.products;
+MAP ADMIN.orders, TARGET ADMIN.orders;
+MAP ADMIN.shipments, TARGET ADMIN.shipments;
+MAP ADMIN.order_items, TARGET ADMIN.order_items;
+MAP ADMIN.customers_seq, TARGET ADMIN.customers_seq;
+
+
+
+## DISTRIBUTION SERVICE SENDS TRAIL JJ ASHBURN TO KK SYDNEY, LL SINGAPORE, MM FRANKFURT --
+## REPIAD TRAIL IS NN COMING FROM SYDNEY, REPIAD2 TRAIL IS OO COMING FROM SINGAPORE, REPIAD3 TRAIL IS PP COMING FROM FRANKFURT  ##
+
+
+URL FOR GOLDENGATE
+------------------
+SYD
+5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com
+
+SGP
+d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com
+
+FRA
+rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com
+
+IAD
+pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com
+
+
+CREATE LOCAL USER AND ADD CONFIGURATION CREDENTIALS IN ALL 3 REGIONS
+--------------------------------------------------------------------
+Username : streamnetwork
+Role : Administrator
+Type : Password
+Info :
+Password : RAbbithole1234#_
+
+Configuration Credentials:
+Credential Domain : OracleNetwork
+Credential Alias  : NETWORK
+UserID : streamnetwork
+Password : RAbbithole1234#_
+
+
+
+DISTRIBUTION SERVICE
+--------------------
+
+## ASHBURN ##
+
+TO_SINGAPORE
+Source : trail://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=JJ
+Extract: EXTIAD
+Trail Name: JJ
+
+Target : wss://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com:443/services/v2/targets?trail=LL
+Target Host : d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com
+Port : 443
+Trail Name : LL
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_SYDNEY
+Source : trail://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=JJ
+Extract: EXTIAD
+Trail Name: JJ
+
+Target : wss://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com:443/services/v2/targets?trail=KK
+Target Host : 5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com
+Port : 443
+Trail Name : KK
+Domain: OracleNetwork
+Alias: NETWORK
+
+TO_FRANKFURT
+Source : trail://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=JJ
+Extract: EXTIAD
+Trail Name: JJ
+
+Target : wss://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com:443/services/v2/targets?trail=MM
+Target Host : rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud
+Port : 443
+Trail Name : MM
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+
+## FRANKFURT ##
+TO_SINGAPORE
+Source : trail://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=EE
+Extract: EXTFRA
+Trail Name: EE
+
+Target : wss://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com:443/services/v2/targets?trail=GG
+Target Host : d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com
+Port : 443
+Trail Name : GG
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_SYDNEY
+Source : trail://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=EE
+Extract: EXTFRA
+Trail Name: EE
+
+Target : wss://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com:443/services/v2/targets?trail=FF
+Target Host : 5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com
+Port : 443
+Trail Name : FF
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_ASHBURN
+Source : trail://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=EE
+Extract: EXTFRA
+Trail Name: EE
+
+Target : wss://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com:443/services/v2/targets?trail=PP
+Target Host : pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com
+Port : 443
+Trail Name : PP
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+
+
+## SINGAPORE ##
+TO_FRANKFURT
+Source : trail://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=AA
+Trail Name: AA
+Extract : EXTSGP
+
+Target : wss://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com:443/services/v2/targets?trail=II
+Target Host : rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com
+Port : 443
+Trail Name : II
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_SYDNEY
+Source : trail://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=AA
+Trail Name: AA
+Extract : EXTSGP
+
+Target : wss://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com:443/services/v2/targets?trail=CC
+Target Host : 5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com
+Port : 443
+Trail Name : CC
+Domain: OracleNetwork
+Alias: NETWORK
+
+TO_ASHBURN
+Source : trail://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=AA
+Extract: EXTSGP
+Trail Name: AA
+
+Target : wss://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com:443/services/v2/targets?trail=OO
+Target Host : pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com
+Port : 443
+Trail Name : OO
+Domain: OracleNetwork
+Alias: NETWORK
+
+## SYDNEY ##
+TO_FRANKFURT
+Source : trail://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=BB
+Trail Name: BB
+Extract : EXTSYD
+
+Target : wss://rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com:443/services/v2/targets?trail=HH
+Target Host : rrt2odnnlg6a.deployment.goldengate.eu-frankfurt-1.oci.oraclecloud.com
+Port : 443
+Trail Name : HH
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_SINGAPORE
+Source : trail://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=BB
+Trail Name: BB
+Extract : EXTSYD
+
+
+Target :wss://d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com:443/services/v2/targets?trail=DD
+Target Host : d77bead6jmia.deployment.goldengate.ap-singapore-1.oci.oraclecloud.com
+Port : 443
+Trail Name : DD
+Domain: OracleNetwork
+Alias: NETWORK
+
+
+TO_ASHBURN
+Source : trail://5emld4s6jrra.deployment.goldengate.ap-sydney-1.oci.oraclecloud.com/services/distsrvr/v2/sources?trail=BB
+Extract: EXTSYD
+Trail Name: BB
+
+Target : wss://pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com:443/services/v2/targets?trail=NN
+Target Host : pagpm6euaooq.deployment.goldengate.us-ashburn-1.oci.oraclecloud.com
+Port : 443
+Trail Name : NN
+Domain: OracleNetwork
+Alias: NETWORK
+
+--------------------------
+TRAIL FILE GLOBAL TOPOLOGY 
+--------------------------
+SYDNEY
+Extract Generates BB
+Distribution Sends BB to HH in Frankfurt via Path TO_FRANKFURT
+Distribution Sends BB to DD in Singapore via Path TO_SINGAPORE
+Distribution Sends BB to NN in Ashburn via Path TO_ASHBURN
+
+Replicat REPSYD Applies CC coming from Singapore
+Replicat REPSYD2 Applies FF coming from Frankfurt
+Replicat REPSYD3 Applies KK coming from Ashburn
+
+## REPSYD TRAIL IS CC COMING FROM SINGAPORE, REPSYD2 TRAIL IS FF COMING FROM FRANKFURT, REPSYD3 TRAIL KK IS COMING FROM ASHBURN ##
+
+
+
+SINGAPORE
+Extract Generates AA
+Distribution Sends AA to II in Frankfurt via Path TO_FRANKFURT
+Distribution Sends AA to CC in Sydney via Path TO_SYDNEY
+Distribution Sends AA to OO in Ashburn via Path TO_ASHBURN
+
+Replicat REPSGP Applies DD coming from Sydney
+Replicat REPSGP2 Applies GG coming from Frankfurt
+Replicat REPSGP3 Applies LL coming from Ashburn
+
+## REPSGP TRAIL IS DD COMING FROM SYDNEY, REPSGP2 TRAIL IS GG COMING FROM FRANKFURT, REPSGP3 TRAIL LL IS COMING FROM ASHBURN ##
+
+
+
+FRANKFURT
+Extract Generates EE
+Distribution Sends EE to GG in Singapore via Path TO_SINGAPORE
+Distribution Sends EE to FF in Sydney via Path TO_SYDNEY
+Distribution Sends EE to PP in Ashburn via Path TO_ASHBURN
+
+
+Replicat REPFRA Applies HH coming from Sydney
+Replicat REPFRA2 Applies II coming from Singapore
+Replicat REPFRA3 Applies MM coming from Ashburn
+
+## REPFRA TRAIL IS HH COMING FROM SYDNEY, REPFRA2 TRAIL IS II COMING FROM SINGAPORE, REPFRA3 TRAIL MM IS COMING FROM ASHBURN ##
+
+
+ASHBURN
+Extract Generates JJ
+Distribution Sends JJ to LL in Singapore via Path TO_SINGAPORE
+Distribution Sends JJ to KK in Sydney via Path TO_SYDNEY
+Distribution Sends JJ to MM in Frankfurt via Path TO_FRANKFURT
+
+
+Replicat REPIAD Applies NN coming from Sydney
+Replicat REPIAD2 Applies OO coming from Singapore
+Replicat REPIAD3 Applies PP coming from Frankfurt
+
+## REPIAD TRAIL IS NN COMING FROM SYDNEY, REPIAD2 TRAIL IS OO COMING FROM SINGAPORE, REPIAD3 TRAIL IS PP COMING FROM FRANKFURT  ##
+
+
+In conclusion every region sends distribution of the extract's trail to the other 3 regions and receives trails from those same 3 regions and applies it via 3 seperate replicats one for each region. For eg: SYD sends Distribution to SGP, IAD and FRA and Applies Trails coming from SGP, IAD and FRA
+
+This setup is repeated over all the 4 regions acting as active-write OCI sites in a multi-master global database application. 
+
+
+NOTE
+----
+1. ALL REPLICATS ARE NON-INTEGRATED FOR AUTONOMOUS
+2. ALL EXTRACTS ARE INTEGRATED FOR AUTONOMOUS
+3. Each Replicat is tagged with a 2-digit Hexadecimal value with parameter SETTAG and each Extract in same region with TRANLOGOPTIONS EXCLUDETAG to ignore the redo stream coming from the Replicat. This is to avoid looping of Transactions in Multi-Master Goldengate replication. For more on Looping refer to : Golden Gate: Prevent Looping Of Transactions In Bi Directional Replication (Doc ID 2301493.1)
+4. For multi-master Goldengate replication there should be application logic to avoid duplicate transactions. For eg: Creating unique customer ID’s to avoid duplicates
+5. This Demo assumes building an app from scratch, creating multi-master of an existing application could requires changes in the application and a strategy to do initial loads in each site etc. Both of which are beyond the scope of this article/demo
+6. Disable DDL replication in extracts and replicate
+
+High-Level Sequence of Steps
+----------------------------------------
+1. Deploy Terraform Code in the 4 OCI Regions
+2. Run ddl.sql dml.sql and enable_goldengate_capture_apply.sql in each Autonomous Database
+3. Register each autonomous database in “Registered Databases” in each region for OCI Goldengate
+4. Add Checkpoint Table ADMIN.CKPT for each region OCI GG Credential
+5. Add Tran Data for Schema ADMIN for each region OCI GG Credential
+6. Create a Local User in Each Region and Create Credential for Each Local user. This is to create authentication for the distribution service for sending across trails to the other regions
+7. Create Extract in Each Region
+8. Create Distribution Path from Each Region to the Other 3 Regions
+9. Create Replicats in Each Region Applying Trails coming in from the Other 3 Regions
+10. Test with some Sample Inserts 
+
+
+
+
