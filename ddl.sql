@@ -1,3 +1,12 @@
+ACCEPT GGADMIN_PWD CHAR PROMPT 'Enter the Password for ggadmin user >'
+
+ACCEPT APP_PWD CHAR PROMPT 'Enter the Password for app user >'
+
+alter user ggadmin identified by &GGADMIN_PWD ;
+
+create user app identified by &APP_PWD ;
+
+set pause
 
 create table customers (
   customer_id     integer ,
@@ -75,22 +84,117 @@ create index shipments_customer_id_i on shipments ( customer_id );
 create index order_items_shipment_id_i on order_items ( shipment_id );
 create index inventory_product_id_i on inventory ( product_id );
 
--- Sydney Sequence --
+--Sydney Sequence --
 create sequence member_seq_syd start with 100 increment by 4 cache 100;
 
--- Singapore Sequence --
+--Singapore Sequence --
 create sequence member_seq_sgp start with 101 increment by 4 cache 100;
 
--- Frankfurt Sequence --
+--Frankfurt Sequence --
 create sequence member_seq_fra start with 102 increment by 4 cache 100;
 
--- Ashburn Sequence --
+--Ashburn Sequence --
 create sequence member_seq_iad start with 103 increment by 4 cache 100;
 
+--Sydney Insert Procedure --
+create or replace procedure INSERT_CUSTOMERS_SYD (rows_inserted_nbr in number)
+is
+    rows_inserted number := 0;
+Begin
+    Loop
+        Begin
+            INSERT INTO customers_seq(customer_id, email_address, full_name)
+            VALUES(member_seq_syd.nextval,dbms_random.string('L', 10) || '@' || dbms_random.string('L', 6) || '.com' , dbms_random.string('L', 10) || ' ' || dbms_random.string('L', 10));
+            --Only increment counter when no duplicate exception
+            rows_inserted := rows_inserted + 1;
+        Exception When DUP_VAL_ON_INDEX Then Null;
+        End;
+        exit when rows_inserted = rows_inserted_nbr ;
+    End loop;
+    commit;
+End;
+/
 
+--Singapore Insert Procedure --
+create or replace procedure INSERT_CUSTOMERS_SGP (rows_inserted_nbr in number)
+is
+    rows_inserted number := 0;
+Begin
+    Loop
+        Begin
+            INSERT INTO customers_seq(customer_id, email_address, full_name)
+            VALUES(member_seq_sgp.nextval,dbms_random.string('L', 10) || '@' || dbms_random.string('L', 6) || '.com' , dbms_random.string('L', 10) || ' ' || dbms_random.string('L', 10));
+            --Only increment counter when no duplicate exception
+            rows_inserted := rows_inserted + 1;
+        Exception When DUP_VAL_ON_INDEX Then Null;
+        End;
+        exit when rows_inserted = rows_inserted_nbr ;
+    End loop;
+    commit;
+End;
+/
 
+--Frankfurt Insert Procedure --
+create or replace procedure INSERT_CUSTOMERS_FRA (rows_inserted_nbr in number)
+is
+    rows_inserted number := 0;
+Begin
+    Loop
+        Begin
+            INSERT INTO customers_seq(customer_id, email_address, full_name)
+            VALUES(member_seq_fra.nextval,dbms_random.string('L', 10) || '@' || dbms_random.string('L', 6) || '.com' , dbms_random.string('L', 10) || ' ' || dbms_random.string('L', 10));
+            --Only increment counter when no duplicate exception
+            rows_inserted := rows_inserted + 1;
+        Exception When DUP_VAL_ON_INDEX Then Null;
+        End;
+        exit when rows_inserted = rows_inserted_nbr ;
+    End loop;
+    commit;
+End;
+/
 
- -- Delete Data -- 
+--Ashburn Insert Procedure --
+create or replace procedure INSERT_CUSTOMERS_IAD (rows_inserted_nbr in number)
+is
+    rows_inserted number := 0;
+Begin
+    Loop
+        Begin
+            INSERT INTO customers_seq(customer_id, email_address, full_name)
+            VALUES(member_seq_iad.nextval,dbms_random.string('L', 10) || '@' || dbms_random.string('L', 6) || '.com' , dbms_random.string('L', 10) || ' ' || dbms_random.string('L', 10));
+            --Only increment counter when no duplicate exception
+            rows_inserted := rows_inserted + 1;
+        Exception When DUP_VAL_ON_INDEX Then Null;
+        End;
+        exit when rows_inserted = rows_inserted_nbr ;
+    End loop;
+    commit;
+End;
+/
+
+-- Create Apex Application User APP and Grant Access to Admin Schema Objects--
+
+grant create session to app;
+
+grant dwrole to app;
+
+grant select on admin.customers_seq to app;
+
+grant insert on admin.customers_seq to app;
+
+create public synonym customer for admin.customers_seq ;
+
+--Enable Goldengate user --
+
+alter user ggadmin account unlock;
+
+--Enable Supplemental logging with admin user for Replicat -- 
+
+ALTER PLUGGABLE DATABASE ADD SUPPLEMENTAL LOG DATA;
+
+select minimal from dba_supplemental_logging;
+
+-- Delete Data -- 
  
 --   truncate table order_items;
 
