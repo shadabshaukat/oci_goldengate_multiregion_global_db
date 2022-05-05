@@ -511,7 +511,8 @@ High-Level Sequence of Steps
 7. Create Extract in Each Region
 8. Create Distribution Path from Each Region to the Other 3 Regions
 9. Create Replicats in Each Region Applying Trails coming in from the Other 3 Regions
-10. Test with some Sample Inserts 
+10. Test with some Sample Inserts using the provided PL/SQL procedure for each region
+11. Create Apex workspace for app user and import the app f101.sql to the workspace
 
 
 
