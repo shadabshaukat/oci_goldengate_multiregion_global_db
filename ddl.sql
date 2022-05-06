@@ -1,10 +1,12 @@
-ACCEPT GGADMIN_PWD CHAR PROMPT 'Enter the Password for ggadmin user >'
+ACCEPT GGADMIN_PWD CHAR PROMPT 'Enter the Password for ggadmin user >' HIDE
 
-ACCEPT APP_PWD CHAR PROMPT 'Enter the Password for app user >'
+ACCEPT APP_PWD CHAR PROMPT 'Enter the Password for app user >' HIDE
 
 alter user ggadmin identified by &GGADMIN_PWD ;
 
 create user app identified by &APP_PWD ;
+
+pause
 
 set pause
 
