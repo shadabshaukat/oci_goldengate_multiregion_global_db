@@ -2,13 +2,12 @@ ACCEPT GGADMIN_PWD CHAR PROMPT 'Enter the Password for ggadmin user >' HIDE
 
 ACCEPT APP_PWD CHAR PROMPT 'Enter the Password for app user >' HIDE
 
+--Activate Goldengate User on ADB
+
 alter user ggadmin identified by &GGADMIN_PWD ;
 
+--Create APP user for Apex Application
 create user app identified by &APP_PWD ;
-
-pause
-
-set pause
 
 create table customers (
   customer_id     integer ,
