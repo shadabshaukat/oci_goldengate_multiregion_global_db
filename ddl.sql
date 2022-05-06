@@ -7,6 +7,7 @@ ACCEPT APP_PWD CHAR PROMPT 'Enter the Password for app user >' HIDE
 alter user ggadmin identified by &GGADMIN_PWD ;
 
 --Create APP user for Apex Application
+
 create user app identified by &APP_PWD ;
 
 create table customers (
@@ -173,7 +174,7 @@ Begin
 End;
 /
 
--- Create Apex Application User APP and Grant Access to Admin Schema Objects--
+-- Grant Access to App user for Admin Schema Objects--
 
 grant create session to app;
 
@@ -183,9 +184,11 @@ grant select on admin.customers_seq to app;
 
 grant insert on admin.customers_seq to app;
 
+grant update on admin.customers_seq to app;
+
 create public synonym customer for admin.customers_seq ;
 
---Enable Goldengate user --
+--Unlock Goldengate user --
 
 alter user ggadmin account unlock;
 
