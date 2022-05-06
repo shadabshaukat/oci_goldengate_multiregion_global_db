@@ -6,10 +6,6 @@ alter user ggadmin identified by &GGADMIN_PWD ;
 
 create user app identified by &APP_PWD ;
 
-pause
-
-set pause
-
 create table customers (
   customer_id     integer ,
   email_address   varchar2(255 char) not null,
